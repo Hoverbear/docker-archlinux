@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
+
+# Change your to your docker ID if this is a unique new image.
+DOCKERID="hoverbear"
+
 # Dependencies
 function check () {
 	hash $1 &>/dev/null || {
@@ -91,4 +95,4 @@ EOF
 ###
 # Test run
 ###
-docker run --rm=true $USER/archlinux echo "Success, $USER/archlinux prepared."
+docker run --rm=true $DOCKERID/archlinux echo "Success, $DOCKERID/archlinux prepared."
