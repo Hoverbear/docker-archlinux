@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Change your to your docker ID if this is a unique new image.
-DOCKERID="hoverbear"
+# Change your to your user if this is a unique new image.
+USER="hoverbear"
 
 # Dependencies
 function check () {
@@ -88,11 +88,10 @@ EOF
 # Build the container., Import it.
 ###
 sudo bash << EOF
-	USER='hoverbear'
 	tar --numeric-owner -C root.x86_64 -c .  | docker import - $USER/archlinux
 EOF
 
 ###
 # Test run
 ###
-docker run --rm=true $DOCKERID/archlinux echo "Success, $DOCKERID/archlinux prepared."
+docker run --rm=true $USER/archlinux echo "Success, $USER/archlinux prepared."
