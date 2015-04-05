@@ -1,4 +1,4 @@
-Article at [my site](http://www.hoverbear.org/2014/07/12/arch-docker/).
+Article at [my site](http://www.hoverbear.org/2014/07/12/arch-docker-baseimage/).
 
 ### Dependencies ###
 You'll need:
