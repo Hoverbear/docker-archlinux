@@ -1,0 +1,16 @@
+sudo: required
+dist: trusty
+services:
+- docker
+install: |
+    sudo ./pre.sh
+script: |
+    sudo ./build.sh
+after_success: |
+    sudo ./post.sh
+    [ $TRAVIS_BRANCH = master ] &&
+    [ $TRAVIS_PULL_REQUEST = false ] &&
+    echo "-----> Publishing..." &&
+    docker login --email=$HUB_EMAIL --username=$HUB_USER --password=$HUB_PASSWORD &&
+    docker tag $HUB_USER/archlinux:latest $HUB_USER/archlinux:latest &&
+    docker push $HUB_USER/archlinux
