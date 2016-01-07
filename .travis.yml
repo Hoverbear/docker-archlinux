@@ -10,7 +10,7 @@ after_success: |
     sudo ./post.sh
     [ $TRAVIS_BRANCH = master ] &&
     [ $TRAVIS_PULL_REQUEST = false ] &&
-    echo "-----> Publishing..." &&
+    echo "-----> Publishing as user $HUB_USER..." &&
     docker login --email="$HUB_EMAIL" --username="$HUB_USER" --password="$HUB_PASSWORD" &&
     docker tag $HUB_USER/archlinux:latest $HUB_USER/archlinux:latest &&
     docker push $HUB_USER/archlinux
