@@ -68,3 +68,4 @@ EOF
 # Build the container., Import it.
 echo "-----> Tarballing..."
 tar --numeric-owner -C archbuild/root.x86_64 -c . -f archlinux.tar
+echo "$VERSION" > version
