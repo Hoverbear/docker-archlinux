@@ -9,9 +9,14 @@ echo "-----> Fetching Arch Bootstrap..."
 VERSION=$(curl https://mirrors.kernel.org/archlinux/iso/latest/ | grep -Poh '(?<=archlinux-bootstrap-)\d*\.\d*\.\d*(?=\-x86_64)' | head -n 1)
 curl https://mirrors.kernel.org/archlinux/iso/latest/archlinux-bootstrap-$VERSION-x86_64.tar.gz -o archbuild/archlinux-bootstrap-$VERSION-x86_64.tar.gz
 curl https://mirrors.kernel.org/archlinux/iso/latest/archlinux-bootstrap-$VERSION-x86_64.tar.gz.sig -o archbuild/archlinux-bootstrap-$VERSION-x86_64.tar.gz.sig
+
+# Travis doesn't give their gpg configuration proper permissions. Fix it for them.
+rm -rf ~/.gnupg
+
 # Pull Pierre Schmitz PGP Key.
 # http://pgp.mit.edu:11371/pks/lookup?op=vindex&fingerprint=on&exact=on&search=0x4AA4767BBC9C4B1D18AE28B77F2D434B9741E8AC
 gpg --keyserver pgp.mit.edu --recv-keys 9741E8AC
+
 # Verify its integrity.
 gpg --verify archbuild/archlinux-bootstrap-$VERSION-x86_64.tar.gz.sig
 VALID=$?
